@@ -1,6 +1,6 @@
 # Ku9-IPTV-source
 ### 个人收集的一些适用于酷9的直播源，其中一部分是ipv4源，也可以被天光云影、OK影视等其他app使用。
 ###  webview_jscode.js这个文件是酷9安装后放入app生成在'/storage/emulated/0/酷9/webviewJscode'这个文件夹里面的。只有配合这个脚本，酷9才能播放'webview://'打头的网页直播源。
-###  web.js这个文件是酷9安装后放入app生成在'/storage/emulated/0/酷9/js'这个文件夹里面的。只有配合这个脚本，酷9才能播放'http://A/ku9/js/web.js?id='打头的网页直播源。
-###  大家也可以自己制作网页直播源，只需在能播放视频的网址前添加  http://A/ku9/js/web.js?id= 即可。
+###  web.js这个文件是酷9安装后放入app生成在'/storage/emulated/0/酷9/js'这个文件夹里面的。只有配合这个脚本，酷9才能播放 'http//A/ku9/js/web.js?id=' 打头的网页直播源。
+###  大家也可以自己制作网页直播源，只需在能播放视频的网址前添加 'http://A/ku9/js/web.js?id='即可。
 ###  以“video://”打头的播放源可以直接在带X5内核的OK影视等app中播放。
