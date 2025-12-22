@@ -1,5 +1,5 @@
 # Ku9-IPTV-source
-个人收集的一些适用于酷9的直播源，其中一部分是ipv4源，也可以被天光云影、云影空蒙、OK影视等其他app使用。
+个人收集的一些适用于酷9的直播源，也可以被天光云影、云影空蒙、OK影视等其他app使用。
 ## 食用指北
 酷9app安装完成后会在存储的主目录生成一个叫“酷9”的文件夹，该文件夹打开后如图所示
 ![酷9文件夹截图](https://raw.githubusercontent.com/fuxinyi0505/Ku9-IPTV-source/refs/heads/main/酷9文件夹截图.jpg)
