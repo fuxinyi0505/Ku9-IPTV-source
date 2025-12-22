@@ -15,6 +15,7 @@ CCTV12,http://migu.youdu.fan:8008/673168185
 CCTV13,http://migu.youdu.fan:8008/608807423
 CCTV14,http://migu.youdu.fan:8008/624878440
 CCTV15,http://migu.youdu.fan:8008/673168223
+CCTV16,http://j.s.bkpcp.top/jj/cctv16
 CCTV17,http://migu.youdu.fan:8008/673168256
 CCTV4欧洲,http://migu.youdu.fan:8008/608807419
 CCTV4美洲,http://migu.youdu.fan:8008/608807416
@@ -24,11 +25,14 @@ CHC家庭影院,http://migu.youdu.fan:8008/644368373
 CETV1,http://migu.youdu.fan:8008/923287154
 CETV2,http://migu.youdu.fan:8008/923287211
 CETV4,http://migu.youdu.fan:8008/923287339
+CGTN,http://k.061899.xyz/k.php?id=cgtn
 CGTN纪录,http://migu.youdu.fan:8008/609006487
 CGTN阿语,http://migu.youdu.fan:8008/609154345
 CGTN西语,http://migu.youdu.fan:8008/609006450
 CGTN法语,http://migu.youdu.fan:8008/609006476
 CGTN俄语,http://migu.youdu.fan:8008/609006446
+CCTV4K,http://b.tvbox6.icu/tv/ysp.php?id=19
+CCTV8K,http://b.tvbox6.icu/tv/ysp.php?id=20
 东方卫视,http://migu.youdu.fan:8008/651632648
 江苏卫视,http://migu.youdu.fan:8008/623899368
 广东卫视,http://migu.youdu.fan:8008/608831231
@@ -1148,7 +1152,7 @@ TVB Plus,webview://http://m.345iptv.com/?act=play%26token=806785b3e369da03a1bac8
 
 湖北频道,#genre#
 湖北卫视,webview://https://news.hbtv.com.cn/app/tv/431
-湖北经济,webview://https://news.hbtv.com.cn/app/tv/432
+湖北经视,webview://https://news.hbtv.com.cn/app/tv/432
 湖北综合,webview://https://news.hbtv.com.cn/app/tv/433
 湖北公共新闻,webview://https://news.hbtv.com.cn/app/tv/434
 湖北影视,webview://https://news.hbtv.com.cn/app/tv/435
