@@ -1,0 +1,947 @@
+使用说明
+关于APP
+✅ 支持多种视频格式
+✅ 支持图标显示
+✅ 支持EPG显示
+✅ 支持七天回看（需频道源支持）
+✅ 支持24小时时移（需频道源支持）
+✅ 支持自定义回看参数
+✅ EPG兼容DIYP，百川，超级TV及XML格式
+✅ 支持音频轨道、视频轨道和字幕轨道切换
+✅ 支持JS脚本功能
+✅ 支持扫码远程输入
+✅ 支持频道搜索
+✅ 支持webview
+✅ 支持读取U盘配置
+✅ 支持txt列表及APP内分组配置部分参数
+✅ 支持二级分组
+✅ 支持多个列表订阅
+✅ 支持tvbox接口解析
+⚠️ 重要提示
+
+以上功能仅供测试使用，禁止传播及非法使用和商业用途，请安装后24小时内卸载并删除。酷9标准版及py版仅支持安卓5.0以上设备，lite版支持安卓4.3以上设备。
+
+目录说明
+backup
+
+储存数据备份文件
+
+download
+
+正在使用的网络列表下载文件
+
+js
+
+js脚本文件
+
+py
+
+py脚本文件(仅py版本支持)
+
+epgCache
+
+EPG缓存目录
+
+localData
+
+本地列表文件
+
+logo
+
+图标文件和配置图标及频道别名的epg_data.json文件
+
+webviewJscode
+
+播放webview时的全屏js代码
+
+configuration
+
+存放配置app初始参数的Configuration.json文件
+
+videoFile
+
+存放本地视频文件
+
+操作说明
+APP界面操作
+
+触摸屏幕左或右边部分为弹出频道列表
+TV设备遥控按键OK或Enter键弹出频道列表
+触摸屏幕中间部分为弹出底部信息栏
+长按屏幕右部分为弹出设置列表，长按屏幕左部分为弹出搜索界面
+屏幕右上下滑动为切换频道，左部分上下滑动为音量调整
+屏幕左右滑动为切换线路（回看或视频片段时弹出进度条界面）
+列表界面操作
+
+触摸屏长按单个节目添加收藏/取消收藏
+TV设备遥控按菜单键或长按OK按键收藏/取消收藏
+订阅界面操作
+
+地址列表中，长按地址可进入编辑状态
+点击可切换地址，编辑状态下按删除按钮或确定按钮为完成编辑
+触摸二维码可跳转至远程页面
+媒体信息操作
+
+长按对应信息可复制对应内容
+配置说明
+解码方式
+
+支持系统、ijkplayer及exoplayer，不同设备切换合适的解码
+根据记忆解码开关，开启为单独设置，关闭为全局生效
+分类中可指定某个分组的解码方式（如：DE=0为系统解码），配置后设置中更换解码不会生效
+EPG配置
+
+需选择解析方式，默认DIYP解析（推荐使用XmlTv格式EPG地址和解析）
+EPG地址需配置对应的解析方式，否则不能加载
+EPG订阅栏可配置EPG的时间偏移值以及缓存更新时间
+EPG缓存
+
+EPG地址配置后选择对应的解析方式，加载后会自动缓存（可关闭）
+缓存自动清除6天前的，（非xml文件）明天后天及精彩节目epg不缓存
+EPG数据凌晨后启动会自动更新一次，根据缓存设置时间会进行二次更新
+读取图标顺序
+
+本地json配置文件 > 本地图标文件 > diyp格式epg中的logo> m3u列表中logo > assets文件配置（图标设置可修改m3u列表中logo优先于epg中logo）
+epg_data.json文件配置
+
+epgid
+epg id名称
+logo
+图标名称或路径
+name
+频道名称
+{
+    "epgs": [
+    {
+        "epgid": "能获取对应epg的id,比如：xx",
+        "logo": "图标名称或者图标网络地址,比如：xx或者http://ku9/xx.png",
+        "name": "想让这些频道获取xx的epg或者xx的图标,比如：xx1,xx2"
+    },
+    {
+        "epgid": "能获取对应epg的id,比如：xx",
+        "logo": "图标名称或者图标网络地址,比如：xx或者http://ku9/xx.png",
+        "name": "想让这些频道获取xx的epg或者xx的图标,比如：xx1,xx2"
+    }
+    ]
+}
+epg_data.json文件存放在logo文件夹中
+
+本地源路径格式
+
+格式1(局域网)
+
+http://127.0.0.1:9978/file/你的文件路径/文件名及文件后缀
+端口号可能变动
+
+格式2(本地)
+
+file:///storage/emulated/0/你的文件路径/文件名及文件后缀
+/storage/emulated/0设备不同可能有变
+
+tvbox接口解析
+
+设置-列表配置-列表订阅，输入接口地址
+
+支持对tvbox多仓，多线路的接口进行解析，获取lives部分
+
+// 1. 多仓接口
+{
+    "storeHouse": [
+    {
+        "sourceName": "仓库1",
+        "sourceUrl": "https://xxxx.txt"
+    },
+    {
+        "sourceName": "仓库2",
+        "sourceUrl": "https://xxxx.json"
+    }
+    ]
+}
+
+// 2. 多线接口
+{
+    "urls": [
+    {
+        "name": "线路1",
+        "url": "https://xxxx.txt"
+    },
+    {
+        "name": "线路2",
+        "url": "https://xxxx.json"
+    }
+    ]
+}
+
+// 3. 订阅接口
+{
+    "lives": [
+    {
+        "name": "订阅接口1",
+        "url": "https://xxxx.txt"
+    },
+    {
+        "name": "订阅接口2",
+        "url": "https://xxxx.m3u"
+    }
+    ]
+}
+注意区分多仓，多线和订阅接口区别！多仓解析稍慢。可点击列表订阅的JSON按钮刷新解析结果
+
+分组配置
+
+支持对分组单独设置解码方式、画面比例、headers、js路径等参数
+
+DE
+解码方式
+SC
+画面比例
+HEADERS
+请求头，json格式
+JS
+Js路径
+PY
+PY路径(仅py版本支持)
+PB
+回放参数
+HOST
+设置Host
+PBO
+回放偏移值
+IJKAD
+ijk和exo的Analyzeduration值
+TSO
+时移结束时间增加值
+//解码方式和画面比例填写选项下标，比如DE=0表示选择系统解码，SC=0表示选择画面比例为默认
+//回放偏移值和时移结束时间增加值填写秒，比如PBO=600表示回放时时间增加偏移10分钟，PBO=-600表示偏移减少10分钟，TSO值设置方式同PBO
+分组1,#genre#,DE=1#SC=3#HEADERS={"User-Agent":"Player"}
+配置多个用#号分隔，注意要在分组1,#genre#,后面添加才有效，不支持m3u分组配置，m3u只能通过app设置-列表配置-分类配置中设置；本地txt分组配置需要分组名和文本名称一致配置才会生效
+
+回看参数配置
+
+参数1
+(b)开始时间，(e)结束时间
+参数2
+日期格式
+参数3
+时区
+生成13位时间戳
+playseek=${(b)}-${(e)}
+生成10位时间戳
+playseek=${(b)10}-${(e)10}
+设置日期
+playseek=${(b)yyyyMMddHHmmss}-${(e)yyyyMMddHHmmss}
+设置时区
+playseek=${(b)yyyyMMddHHmmss|Asia/Shanghai}-${(e)yyyyMMddHHmmss|Asia/Shanghai}
+TXT列表配置
+分组1,#genre#,PB=playseek=${(b)yyyyMMddHHmmss}-${(e)yyyyMMddHHmmss}
+M3U列表配置
+catchup
+append或default
+catchup-source
+回看参数或回看地址
+//catchup为default时（直接使用catchup-source地址），最终回看地址：http://xxx0001?playseek=20251201080000-20251201090000
+#EXTINF:-1 catchup="default" catchup-source="http://xxx001?playseek=${(b)yyyyMMddHHmmss}-${(e)yyyyMMddHHmmss}",源1
+http://xxx
+
+//catchup为append时（地址与catchup-source地址拼接），最终回看地址：http://xxx&playseek=20251201080000-20251201090000
+#EXTINF:-1 catchup="append" catchup-source="playseek=${(b)yyyyMMddHHmmss}-${(e)yyyyMMddHHmmss}",源1
+http://xxx
+
+//设置全局回看参数（首行位置）
+#EXTM3U catchup="append" catchup-source="playseek=${(b)yyyyMMddHHmmss}-${(e)yyyyMMddHHmmss}"
+脚本说明
+频道地址格式
+
+格式1
+
+//js脚本
+http://xx/ku9/js/xx.xx?id=xx
+
+//py脚本
+http://xx/ku9/py/xx.xx?id=xx
+字符/ku9/js/或/ku9/py/为识别格式，xx为任意字符
+
+格式2（网络路径）
+
+//js脚本
+http://xx/xx/k-web/ku9/js/xx.xx?id=xx
+
+//py脚本
+http://xx/xx/k-web/ku9/py/xx.xx?id=xx
+/k-web/前为任意网络路径
+
+格式3（时移地址）
+
+//js脚本
+http://xx/xx/k-web/PLTV/ku9/js/xx.xx?id=xx
+
+//py脚本
+http://xx/xx/k-web/PLTV/ku9/py/xx.xx?id=xx
+在/k-Web/之后添加可时移字符，如PLTV
+
+格式4（指定json文件,获取url标签，类似重定向地址）
+
+http://xx/xx/xx.xx?id=xx&/ku9-json/
+http://xx/xx/xx.xx为具体json路径地址
+
+url同时包含/k-web/和/ku9/js/或/ku9/py/读取网络文件，只包含/ku9/js/或/ku9/py/读取本地文件； py仅py版本支持
+
+PY脚本说明
+
+from base.parser import Parser
+import requests
+from typing import Tuple, Any, Dict, Union, Iterable
+
+class Parser(Parser): #必须继承
+
+# 必须，实现解析
+def parse(self, params: Dict[str, str]) -> Dict[str, str]:
+a = params.get("a")
+response = requests.get(a)
+
+return {
+    url : self.address + "?a=1" # 当前脚本proxy的网络地址
+}
+
+
+# 非必须，若有后台运行的代码，注意及时关闭，换台时调用
+def stop(self):
+pass
+
+
+# 非必须，用于代理流，注意返回类型
+def proxy(self, url: str, headers: Dict[str, Any]) -> Tuple[Union[bytes, Iterable[bytes]], Dict[str, str]]:
+pass
+仅py版支持
+
+JS函数使用
+
+ku9.内置函数名(参数1,参数2..)
+ku9.get( url );
+ku9.post( url );
+JS调试模式
+
+同一局域网查看js返回结果：
+//请求地址格式
+局域网地址/ku9/js/xxx.js
+//示例：http://192.168.0.1:9978/ku9/js/xxx.js
+通过post请求，设置请求体（js文件内容），请求url（调试地址），可获取返回内容
+//请求地址格式
+局域网地址/ku9/js/debug?id=xxx
+//示例：http://192.168.0.1:9978/ku9/js/debug?id=xxx
+app设置需开启远程调试
+
+JS函数使用示例
+
+function main() 主函数
+function main( item ) {
+    //执行逻辑
+}
+console.log() 日志打印
+console.log(message);
+获取地址 快速获取URL地址
+const url = item.url;
+ku9.getQuery() 获取URL查询参数
+参数1
+请求地址（String）
+参数2
+要获取的参数（String）
+var id = ku9.getQuery(url, "id");
+var id = item.id; // 快速方式
+ku9.setCache() 设置缓存
+key
+缓存时定义的key（String）
+data
+缓存内容（Object）
+time
+缓存时效（Number）
+返回类型
+无返回类型
+//缓存时效单位毫秒，0为永久有效，如：时效为1分钟，需传入60000
+ku9.setCache( key , data , time )
+ku9.getCache 获取缓存
+key
+获取指定key的缓存（String）
+返回类型
+Object
+//过期或者值不存在返回null
+var getCache =ku9.getCache( key )
+ku9.Uri() 解析网址结构
+url
+要解析的地址（String）
+返回类型
+Object
+
+var uri = ku9.Uri( url );
+
+//获取协议类型 返回String
+var Scheme = uri.Scheme;
+
+//获取域名或IP地址 返回String
+var Host = uri.Host;
+
+//获取连接的端口号 返回Number
+var Port = uri.Port;
+
+//获取路径部分，不包含名称及后缀部分 返回String
+var Path= uri.Path;
+
+//查询字符串部分，以 ? 开头，通常包含键值对，用于传递参数。 返回String
+var Query = uri.Query;
+
+//获取片段标识符，以 # 开头，通常用于指向页面的特定部分或元素。 返回String
+var Fragment = uri.Fragment;
+
+//获取完整的路径，包含名称及后缀部分 返回String
+var FullPath = uri.FullPath;
+
+//解析url查询参数，生成键值对，返回json格式，如http://123/c.m3u8?id=1&c=k，返回json格式{“c”：“k”}
+var Params = uri.Params;
+ku9.request() 网络请求
+url
+请求地址（String）
+method
+GET或POST（String）
+headers
+请求头对象（Object）
+body
+请求体内容（String）
+redirect
+是否重定向（Boolean）
+返回类型
+Object
+let res = ku9.request( url, method , headers, body , redirect);
+
+//示例
+let res = ku9.request( url, "GET" , { 'User-Agent': 'okhttp/3.12.11' }, "***" , false);
+let res = ku9.request( url, "POST" , { 'User-Agent': 'okhttp/3.12.11' }, "***" );
+let res = ku9.request( url, "POST" , { 'User-Agent': 'okhttp/3.12.11' });
+let res = ku9.request( url, "POST" );
+let res = ku9.request( url );
+var furl = res.furl; // 重定向地址
+var code = res.code; // 状态码
+var headers = res.headers; // 响应头
+var body = res.body; // 响应体
+url必填参数，其余可选，type默认为GET，重定向默认为true（需要获取重定向后的地址，填false）
+
+ku9.get() GET请求
+url
+请求地址（String）
+headers
+请求头对象（json）
+返回类型
+String
+var res = ku9.get( url , headers );
+
+//示例
+var res = ku9.get( url , { 'User-Agent': 'okhttp/3.12.11' } );
+var res = ku9.get( url , null );
+ku9.post() POST请求
+url
+请求地址（String）
+headers
+请求头对象（json）
+body
+请求体内容（String）
+返回类型
+String
+var res = ku9.post( url , headers , body );
+
+//示例
+var res = ku9.post( url , { 'User-Agent': 'okhttp/3.12.11' } , "***" );
+var res = ku9.post( url , null , "***" );
+ku9.getHeaders() 获取头部信息
+url
+请求地址（String）
+headers
+请求头对象（json）
+redirect
+是否重定向（Boolean）
+method
+请求方法（String）
+body
+请求体内容（String）
+返回类型
+String
+let res = ku9.getHeaders( url, headers , redirect, method, body )
+
+//示例
+let res = ku9.getHeaders( url, { 'User-Agent': 'okhttp/3.12.11' } , false, "POST", "***" )
+let res = ku9.getHeaders( url,{ 'User-Agent': 'okhttp/3.12.11' } , true,  "GET" )
+let res = ku9.getHeaders( url, { 'User-Agent': 'okhttp/3.12.11' } , false )
+let res = ku9.getHeaders( url, { 'User-Agent': 'okhttp/3.12.11' } )
+let res = ku9.getHeaders( url)
+url必填参数，其余可选，type默认为GET，重定向默认为true（需要获取重定向后的地址，填false）
+
+ku9.websocket() 实时连接
+※ 创建连接对象
+url
+地址（String）
+headers
+请求头（Object）
+name
+连接名称（String）
+let ws = ku9.websocket();
+//url连接为ws://xxx格式
+let wsconnect = ws.connect(url, headers, name);
+※ 获取已有连接对象
+name
+连接名称（String）
+let ws = ku9.websocket();
+let wsconnect = ws.get(name);
+※ 判断已有连接
+name
+连接名称（String）
+返回类型
+Boolean
+let ws = ku9.websocket();
+let haswsname = ws.has(name);
+※ 发送消息
+mes
+消息内容（String）
+let ws = ku9.websocket();
+let wsconnect = ws.connect(url, headers, name);
+wsconnect.send(mes);
+※ 发送二进制消息
+mes
+二进制数据（String）
+hex
+转为Hex，必须为true（Boolean）
+let ws = ku9.websocket();
+let wsconnect = ws.connect(url, headers, name);
+wsconnect.send(mes, true);
+※ 关闭连接
+code
+状态码（Number）
+reason
+关闭原因（String）
+let ws = ku9.websocket();
+let wsconnect = ws.connect(url, headers, name);
+wsconnect.close(1000, reason);
+※ 周期任务
+name
+连接名称（String）
+message
+任务消息（String）
+time
+执行周期，单位毫秒（Number）
+let ws = ku9.websocket();
+let wsconnect = ws.connect(url, headers, name);
+wsconnect.task(name, message, time);
+※ 二进制周期任务
+name
+连接名称（String）
+message
+任务消息（String）
+time
+执行周期，单位毫秒（Number）
+hex
+消息转Hex，必须为true（Boolean）
+let ws = ku9.websocket();
+let wsconnect = ws.connect(url, headers, name);
+wsconnect.task(name, message, time, true);
+※ 取消任务
+name
+任务名称（String）
+let ws = ku9.websocket();
+let wsconnect = ws.connect(url, headers, name);
+wsconnect.removetask(name);
+※ 其他方法
+let ws = ku9.websocket();
+let wsconnect = ws.connect(url, headers, name);
+
+//周期发送的消息
+wsconnect.message();
+
+//任务状态码
+wsconnect.status();
+
+//任务日志
+wsconnect.log();
+ku9.opensslEncrypt() AES加密
+data
+加密数据（String）
+enType
+加密类型（String）
+key
+加密秘钥（String）
+outputType
+输出数据类型：0为Base64字符串，1为HEX字符串，默认0（Number）
+iv
+加密向量（String）
+返回类型
+String
+var enc = ku9.opensslEncrypt( data, enType, key , outputType, iv );
+
+//示例
+var enc = ku9.opensslEncrypt(data, "AES-256-CBC", "ilyB29ZdruuQjC45JhBBR7o2Z8WJ26Vg" , 0, "JUMxvVMmszqUTeKn" );
+var enc = ku9.opensslEncrypt(data, "AES-256-CBC", "ilyB29ZdruuQjC45JhBBR7o2Z8WJ26Vg" , 0 );
+ku9.opensslDecrypt() AES解密
+data
+解密数据（String）
+deType
+解密类型（String）
+key
+解密秘钥（String）
+inputType
+输入数据类型：0为Base64字符串，1为HEX字符串，默认0（Number）
+iv
+解密向量（String）
+返回类型
+String
+var dec = ku9.opensslDecrypt( data, deType, key , inputType, iv );
+
+//示例
+var dec = ku9.opensslDecrypt( data, "AES-256-CBC", "ilyB29ZdruuQjC45JhBBR7o2Z8WJ26Vg", 1, "JUMxvVMmszqUTeKn" );
+var dec = ku9.opensslDecrypt( data, "AES-256-CBC", "ilyB29ZdruuQjC45JhBBR7o2Z8WJ26Vg" , 1 );
+ku9.rc4Decrypt() RC4解密
+data
+解密内容（String）
+key
+解密密码（String）
+inputFormat
+输入格式：0为String，1为Hex（Number）
+outputFormat
+输出格式：0为String，1为Hex（Number）
+charset
+字符集（默认UTF-8）（String）
+返回类型
+String
+var dec = ku9.rc4Decrypt( data, key, inputFormat , outputFormat , charset );
+
+//示例
+var dec = ku9.rc4Decrypt( data, key, 0 , 1 , "UTF-8" );
+var dec = ku9.rc4Decrypt( data, key, 0 , 1 );
+ku9.rc4Encrypt() RC4加密
+data
+要加密内容（String）
+key
+加密的密码（String）
+inputFormat
+输入格式：0为String，1为Hex（Number）
+outputFormat
+输出格式：0为String，1为Hex（Number）
+charset
+字符集（默认UTF-8）（String）
+返回类型
+String
+var enc = ku9.rc4Encrypt( data, key, inputFormat , outputFormat , charset );
+
+//示例
+var enc = ku9.rc4Encrypt( data, key, 0 , 1 , "GBK" );
+var enc = ku9.rc4Encrypt( data, key, 0 , 1 );
+哈希加密函数 多种哈希算法
+data
+需要加密的字符串（String）
+返回类型
+String
+var sha1 = ku9.sha1( data );
+var sha256 = ku9.sha256( data );
+var sha512 = ku9.sha512( data );
+var md5 = ku9.md5( data );
+ku9.encodeBase64() Base64编码
+data
+需要编码的字符串（String）
+返回类型
+String
+var encodeBase64 = ku9.encodeBase64(data);
+ku9.decodeBase64() Base64解码
+data
+需要解码的字符串（String）
+返回类型
+String
+var decodeBase64 = ku9.decodeBase64(data);
+判断函数 数据类型判断
+data
+需要判断的字符串（String）
+返回类型
+Boolean
+//是否为b64编码
+var isBase64 = ku9.isBase64(url);
+//是否为json对象
+var isJsonObject = ku9.isJsonObject(url);
+//是否为json组
+var isJsonArray = ku9.isJsonArray(url);
+加密库引用 地址加密
+//加密库引用示例
+const CryptoJS = require( "crypto" );
+const jsencrypt = require( "jsencrypt" );
+let base64String = "" ; //url Base64编码
+let url = CryptoJS.enc.Base64.parse(base64String).toString( CryptoJS.enc.Utf8 );
+const response = ku9.request( url );
+ku9.toTimestamp() 日期转时间戳
+dateStr
+输入日期（String）
+inputFormat
+输入日期格式（String）
+timezone
+设置时区（String）
+返回类型
+Number
+var time = ku9.toTimestamp( dateStr , inputFormat , timezone );
+
+//示例
+var time = ku9.toTimestamp( "2024-10-23" , "yyyy-MM-dd" , "Asia/Shanghai" );
+var time = ku9.toTimestamp( "2024-10-23" , "yyyy-MM-dd"  );
+ku9.toDate() 时间戳转日期
+timestamp
+13位时间戳（毫秒）（Number）
+outputFormat
+输出日期格式（String）
+timezone
+设置时区（String）
+返回类型
+String
+var time = ku9.toDate( timestamp , outputFormat , timezone );
+
+//示例
+var time = ku9.toDate( 1698019200000 , "yyyy-MM-dd" , "Asia/Shanghai" );
+var time = ku9.toDate( 1698019200000 , "yyyy-MM-dd" );
+ku9.formatDateTime() 日期格式转换
+dateStr
+输入日期字（String）
+inputFormat
+输入日期格式（String）
+outputFormat
+输出日期格式（String）
+daysOffset
+加减天数（Number）
+inputTimezone
+设置输入时区（String）
+outputTimezone
+设置输出时区（String）
+返回类型
+String
+var formatDateTime = ku9.formatDateTime( dateStr , inputFormat ,  outputFormat , daysOffset , inputTimezone , outputTimezone );
+
+//示例
+var formatDateTime = ku9.formatDateTime( "2024-10-23 21:23:00" , "yyyy-MM-dd HH:mm:ss" ,  "yyyy-MM-dd" , 1 , "Asia/Shanghai" , "Asia/Shanghai" );
+var formatDateTime = ku9.formatDateTime( "2024-10-23 21:23:00" , "yyyy-MM-dd HH:mm:ss" ,  "yyyy-MM-dd" , 1 , "Asia/Shanghai" );
+var formatDateTime = ku9.formatDateTime( "2024-10-23 21:23:00" , "yyyy-MM-dd HH:mm:ss" ,  "yyyy-MM-dd" , 0 );
+var formatDateTime = ku9.formatDateTime( "2024-10-23 21:23:00" , "yyyy-MM-dd HH:mm:ss" ,  "yyyy-MM-dd" );
+返回播放地址
+return { url: url };
+返回播放地址设置解码方式
+//返回解码方式为0 系统解码
+return { url: url, player: 0 };
+返回播放地址设置画面比例
+//设置画面比例为3 填充
+return { url: url, scale: 3 };
+返回播放地址设置AnalyzeDuration
+//设置Analyzeduration值为2000000
+return { url: url, ijkad: 2000000 };
+返回播放地址带headers
+return { url: url, headers: { 'User-Agent': 'okhttp/3.12.11' } };
+返回播放地址设置host
+return { url: url, host: "127.0.0.1" };
+return { url: url, host: {"example.com" : "127.0.0.1" , "example.cn" : "127.0.0.2"}};
+返回m3u8切片 返回m3u8格式内容
+let content = "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-TARGETDURATION:10\n#EXT-X-MEDIA-SEQUENCE:" + seq + "\n";
+for (var i = 0; i < 3; i++) {
+    content += "#EXTINF:10,\n";
+    content += "http://123456789/" + id + i + ".ts\n";
+}
+return { m3u8: content };
+通过webview播放 WebView播放方式
+//jscode为播放网页时的模拟操作，比如让视频全屏
+return { webview: url, jscode: jscode, headers: headers };
+return { webview: url, jscode: jscode };
+return { webview: url };
+其他说明
+webview播放
+
+播放格式
+//webview后面为网页地址
+webview://http://xxx
+webview_jscode.js文件
+// WebView JS注入代码
+(function () {
+    // 操作逻辑略.....
+    video.play();
+
+    // 设置画面比例，确保切换源时为选择的画面比例
+    setscale(ku9.getscale());
+
+    // 画面比例控制，app通过画面比例设置，切换scaletype值切换不同比例，注：function setscale(scaletype)为全局函数
+    function setscale(scaletype) {
+        switch (scaletype) {
+            // 默认
+        case 0:
+            // 执行代码
+        break;
+
+            // 16:9
+        case 1:
+            // 执行代码
+        break;
+
+            // 4:3
+        case 2:
+            // 执行代码
+        break;
+
+            // 填充
+        case 3:
+            // 执行代码
+        break;
+
+            // 原始
+        case 4:
+            // 执行代码
+        break;
+
+            // 裁剪
+        case 5:
+            // 执行代码
+        break;
+        }
+    }
+
+    // 指定视频时长（duration>0时，播放视频时app界面左右滑动弹出seekbar，单位秒）
+    ku9.setduration(duration);
+
+    // 指定视频进度（播放视频时跳转指定时长）
+    ku9.setposition(position);
+
+    // 视频暂停（app界面左右滑动弹出seekbar后，按暂停按钮执行此方法让视频暂停）
+    function pause() {
+        // 执行代码
+    }
+
+    // 视频播放（app界面左右滑动弹出seekbar后，按播放按钮执行此方法让视频播放）
+    function play() {
+        // 执行代码
+    }
+
+    // 拖动视频进度时（app界面左右滑动弹出seekbar后，移动seekbar执行此方法让视频跳转至position位置播放，单位秒）
+    function setposition(position) {
+        // 执行代码
+    }
+
+    // 视频倍速（app界面左右滑动弹出seekbar后，实现点击倍速按钮切换视频播放速度，长按恢复倍速功能）
+    function setspeed(float) {
+        // 执行代码（接收float类型的倍速值，设置视频倍速，如：video.playbackRate = float）
+    }
+})();
+webview_jscode.js存放在webviewJscode文件夹中，用来模拟全屏操作
+
+二级分组
+
+TXT列表
+#group#
+一级分组
+#genre#
+二级分组
+//大分组"娱乐"包含两个小分组
+娱乐,#group#
+
+影视,#genre#
+源1:http://xxx
+源2:http://xxx
+
+音乐,#genre#
+源1:http://xxx
+源2:http://xxx
+
+//大分组"其他"包含两个小分组
+其他,#group#
+
+教育,#genre#
+源1:http://xxx
+源2:http://xxx
+
+学习,#genre#
+源1:http://xxx
+源2:http://xxx
+
+//指定某个二级分组加密，如设置音乐分组密码为123
+音乐_123,#genre#
+M3U列表
+category
+一级分组
+group-title
+二级分组
+//大分组"娱乐"包含两个小分组
+#EXTINF:-1 tvg-name="xxx" tvg-logo="xxx" category="娱乐" group-title="影视",源1
+http://xxx
+#EXTINF:-1 tvg-name="xxx" tvg-logo="xxx" category="娱乐" group-title="音乐",源1
+http://xxx
+
+//大分组"其他"包含两个小分组
+#EXTINF:-1 tvg-name="xxx" tvg-logo="xxx" category="其他" group-title="教育",源1
+http://xxx
+#EXTINF:-1 tvg-name="xxx" tvg-logo="xxx" category="其他" group-title="学习",源1
+http://xxx
+
+//指定某个二级分组加密，如设置音乐分组密码为123
+group-title="音乐_123"
+X5内核
+
+内核包x5.tbs.apk放入酷9目录，通过设置-其他设置-浏览内核安装，或通过Tbs选项安装
+
+host配置
+
+直接配置
+分组1,#genre#,HOST=127.0.0.1
+json键值对配置
+分组1,#genre#,HOST={"example.com" : "127.0.0.1" , "example.cn" : "127.0.0.2"}
+也可在js脚本中通过返回播放地址时指定host，仅EXO播放器生效，源域名为ip时无效
+
+headers对源单独配置
+
+ku9-json格式地址
+//不带headers参数的地址
+http://xxx;
+
+//设置headrs参数的地址
+ku9-json://{"url":"http://xxx","headers":{"User-Agent" : "okhttp"}}
+对源单独设置解码方式、画面比例、host、headers、Ijk及Exo AnalyzeDuration
+
+结合js脚本使用
+function main(item) {
+
+    //以PLTV作为示例，添加PLTV让播放器识别为可回看，不同源返回回看格式不同，这里通过播放器返回的playseek可以自定义最终的回看格式
+    //源格式示例：源1,http://PLTV/ku9/js/**.js?liveUrl=http://xxx0001&backUrl=rtsp://xxx0002
+
+    let url = item.url;
+
+    //获取直播链接 http://xxx0001
+    const liveUrl = ku9.getQuery( url, "liveUrl" );
+
+    //获取取回看链接 rtsp://xxx0002
+    const backUrl = ku9.getQuery( url, "backUrl" );
+
+    //获取PLTV源回看时间（yyyyMMddHHmmss格式时间段）
+    const playSeek = ku9.getQuery( url, "playseek" );
+
+    if (!playSeek) {
+        //设置live时的解码方式、画面比例、exo bufferForPlaybackMs值、headers
+        return { url: liveUrl, player: 1, scale: 0 , exobufms: 2500 , headers: { 'User-Agent': 'okhttp/3.12.11' } };
+    } else {
+        //设置back时的解码方式、画面比例、ijk AnalyzeDuration值、host
+        let finalUrl = backUrl + "?playseek=" + playSeek; //需要定义的回看格式
+        return { url: finalUrl, player: 3, scale: 2 , ijkad: 2000000 , host: "127.0.0.1" };
+    }
+}
+app在线升级
+
+需要搭配update.json文件，文件如下：
+{
+    "Update": {
+        "#1": "是否更新；true为开启，false为关闭，(versionCode大于客户端并且值为true是提示更新必须条件)",
+        "hasUpdate": true,
+        "#2": "通过判断客户端APK里的versionCode值提示是否升级，设置值＞客户端值则提示升级",
+        "versionCode": 1,
+        "#3": "升级版本等信息",
+        "apkSize": "版本：1.1beta    apk大小：35MB",
+        "#4": "升级内容；\n为展示内容分行",
+        "updateLog": "#内容1。\n#内容2。\n#内容x。",
+        "#5": "升级时下载APK的网络路径",
+        "apkUrl": "http://app/ku9.apk"
+    }
+}
+使用方式：update.json文件放置服务器，提取文件地址，配置在本地配置文件Configuration.json的updateUrl中
+
+versionCode值：apk文件AndroidManifest.xml中的versionCode值
+
+酷9默认versionCode为17，update.json文件中的versionCode为1，所以默认直接使用不会提示升级
