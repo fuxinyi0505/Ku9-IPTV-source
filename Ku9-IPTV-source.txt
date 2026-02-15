@@ -1245,10 +1245,9 @@ RTHK-32,http://php.jdshipin.com/TVOD/iptv.php?id=rthk32
 CCTV1,http://php.jdshipin.com/TVOD/iptv.php?id=rthk33
 中视,rtmp://f13h.mine.nu/sat/tv091
 
-凤凰中文,http://43.251.226.89:8080/play/1366.m3u8
-凤凰资讯,http://43.251.226.89:8080/play/1367.m3u8
-凤凰香港,http://43.251.226.89:8080/play/1368.m3u8
-中天新闻,http://43.251.226.89:8080/play/1532.m3u8
+凤凰中文,http://pull-vivek.speedws.com/live/aaafhzw.flv
+凤凰资讯,http://pull-vivek.speedws.com/live/aaafhzx.flv
+凤凰香港,http://pull-vivek.speedws.com/live/aaafhxg.flv
 
 凤凰中文,http://m.061899.xyz/mg/fhzw
 凤凰资讯,http://m.061899.xyz/mg/fhzx
